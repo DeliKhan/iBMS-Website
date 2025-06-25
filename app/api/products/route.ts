@@ -6,7 +6,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 export async function GET() {
   try {
     const products = await stripe.prices.list({expand: ['data.product'],limit: 30});
-
     return NextResponse.json(products);
   } catch (error: unknown) {
     if (error instanceof Error) {
