@@ -8,8 +8,12 @@ export async function GET() {
     const products = await stripe.prices.list({expand: ['data.product'],limit: 30});
 
     return NextResponse.json(products);
-  } catch (error: any) {
-    console.error('Error fetching products from Stripe:', error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching products from Stripe:', error.message);
+    } else {
+      console.error('Unknown error fetching products from Stripe:', error);
+    }
     return NextResponse.json(
       { error: 'Failed to fetch products from Stripe' },
       { status: 500 }

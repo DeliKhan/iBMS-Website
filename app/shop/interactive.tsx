@@ -5,13 +5,6 @@ import { useEffect, useState } from 'react'
 import Mobile from "./mobile"
 import Desktop from "./desktop"
 
-interface MerchItem {
-    image_path: string;
-    title: string;
-    description: string;
-    price: number;
-}
-
 interface StripePriceWithProduct {
   id: string;
   object: 'price';

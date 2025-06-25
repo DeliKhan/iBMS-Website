@@ -20,13 +20,6 @@ import {
 } from "../_components/dialog"
 import { Lens } from "../_components/lens"
 
-interface MerchItem {
-    image_path: string;
-    title: string;
-    description: string;
-    price: number;
-}
-
 interface StripePriceWithProduct {
   id: string;
   object: 'price';
