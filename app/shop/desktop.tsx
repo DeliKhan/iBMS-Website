@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState } from 'react'
 import Image from 'next/image'
+import { Plus, Minus } from 'lucide-react';
 import {
     Card,
     CardContent,
@@ -19,6 +20,7 @@ import {
     DialogTrigger,
 } from "../_components/dialog"
 import { Lens } from "../_components/lens"
+import { useCart } from './cartContext';
 
 interface StripePriceWithProduct {
   id: string;
@@ -88,13 +90,7 @@ interface QuantityList {
 const Desktop: React.FC<DesktopProp> = ({items}) => {
     const [selectedItem, setSelectedItem] = useState<StripePriceWithProduct | null>(null);
     const [hovering, setHovering] = useState(false);
-    const [quantity, setQuantity] = useState<QuantityList>({});
-    const decrement = (priceId : string) => {
-        setQuantity(prevValues => ({...prevValues , [priceId] : Math.max((prevValues[priceId] ?? 0)-1,0)}));
-    }
-    const increment = (priceId : string) => {
-        setQuantity(prevValues => ({...prevValues , [priceId] : Math.max((prevValues[priceId] ?? 0)+1,0)}));
-    }
+    const {cart, addItem, removeItem} = useCart();
     console.log("Items:", items);
     return (
         <div className="grid grid-cols-1 gap-4 bg-black px-5 pt-8 pb-10 md:grid-cols-2 lg:grid-cols-4" style={{
@@ -144,9 +140,9 @@ const Desktop: React.FC<DesktopProp> = ({items}) => {
                     </DialogFooter>
                     <CardDescription className='text-base'>Quantity</CardDescription>
                     <div className='flex flex-row'>
-                        <button className='bg-slate-100 rounded-l-lg' disabled={(selectedItem?.id && quantity[selectedItem.id] == 1) ? true : false} onClick={() => selectedItem && decrement(selectedItem.id)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-minus-icon lucide-minus"><path d="M5 12h14"/></svg></button>
-                        <div className='px-2 border-solid border-2 border-slate-100'>{selectedItem?.id ? quantity[selectedItem.id] ?? 0 : 0}</div>
-                        <button className='bg-slate-100 rounded-r-lg' onClick={() => selectedItem && increment(selectedItem.id)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
+                        <button className='bg-slate-100 rounded-l-lg' disabled={(selectedItem?.id && cart[selectedItem.id] == 0) ? true : false} onClick={() => selectedItem && removeItem(selectedItem.id)}><Minus/></button>
+                        <div className='px-2 border-solid border-2 border-slate-100'>{selectedItem?.id ? cart[selectedItem.id] ?? 0 : 0}</div>
+                        <button className='bg-slate-100 rounded-r-lg' onClick={() => selectedItem && addItem(selectedItem.id)}><Plus/></button>
                     </div>
                 </DialogContent>
             </Dialog>

@@ -1,4 +1,5 @@
 import { Inter } from 'next/font/google';
+import { CartProvider } from './shop/cartContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className="flex flex-col min-h-screen">
-        <main 
-          className="flex-grow">{children}
-        </main>
+        <CartProvider>
+          <main 
+            className="flex-grow">{children}
+          </main>
+        </CartProvider>
       </body>
     </html>
   )

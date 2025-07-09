@@ -3,6 +3,7 @@
 import "../globals.css"
 import "./navbar.css"
 import logo from "../../public/ibiosocietylogo.png"
+import CartButton from "./cartButton"
 
 import Image from "next/image"
 import Link from 'next/link';
@@ -55,10 +56,11 @@ export default function Navbar() {
               </div>
             )}
           </div>
-
           <Link href="/events" className="nav-link hover:text-neutral-300">Events</Link>
           <Link href="/shop" className="nav-link hover:text-neutral-300">Shop</Link>
           <Link href="/contact" className="nav-link hover:text-neutral-300">Contact</Link>
+          {/* Cart (Desktop) */}
+          <CartButton/>
         </div>
 
         {/* Mobile Navbar with Hamburger Menu */}

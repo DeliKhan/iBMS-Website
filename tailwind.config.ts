@@ -7,11 +7,11 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-		background: 'hsl(var(--background))',
-  		foreground: 'hsl(var(--foreground))',
-        card: {
+  	extend: {
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
@@ -49,25 +49,27 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-        "mac-light-red": "#C22D2A",
-        "mac-dark-red": "#AD2F2F",
-        "mac-pink": "#F2AAA9",
-        "mac-dark-yellow": "#FFD920",
-        "mac-light-yellow": "#F8EAA8",
-        "mac-grey": "#ECECEC"
+  			'mac-light-red': '#C22D2A',
+  			'mac-dark-red': '#AD2F2F',
+  			'mac-pink': '#F2AAA9',
+  			'mac-dark-yellow': '#FFD920',
+  			'mac-light-yellow': '#F8EAA8',
+  			'mac-grey': '#ECECEC'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		  fontFamily: {
-			  sans: ['var(--font-inter)']
-		  },
-      fontSize: {
-        base: "1.00rem",
-      },
-    },
+  		fontFamily: {
+  			sans: [
+  				'var(--font-inter)'
+  			]
+  		},
+  		fontSize: {
+  			base: '1.00rem'
+  		}
+  	}
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
