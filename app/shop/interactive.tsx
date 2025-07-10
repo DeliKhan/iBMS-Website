@@ -4,6 +4,7 @@ import useMediaQuery from "../../hooks/useMediaQuery"
 import { useEffect, useState } from 'react'
 import Mobile from "./mobile"
 import Desktop from "./desktop"
+import { useCart } from "./cartContext"
 
 interface StripePriceWithProduct {
   id: string;
@@ -75,6 +76,8 @@ export default function Interactivity(){
         .catch((error) => console.error('Error fetching JSON:', error));
     }, []);
     */
+   const {productList} = useCart();
+   /*
    const [inventory, setInventory] = useState<StripePriceWithProduct[]>([]);
 
     useEffect(() => {
@@ -85,16 +88,16 @@ export default function Interactivity(){
         .then((data) => {setInventory(data.data); console.log('Fetched inventory:', data.data);})
         .catch((error) => console.error('Error fetching JSON:', error));
     }, []);
-
+*/
     return (
         <>
         {isMobile ?
             ( 
-                <Mobile items={inventory} />
+                <Mobile items={productList} />
             )
             :
             (
-                <Desktop items={inventory} />
+                <Desktop items={productList} />
             )
         }
         </>

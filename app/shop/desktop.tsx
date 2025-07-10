@@ -83,9 +83,6 @@ interface DesktopProp {
     items: StripePriceWithProduct[];
 }
 
-interface QuantityList {
-    [priceId : string] : number;
-}
 
 const Desktop: React.FC<DesktopProp> = ({items}) => {
     const [selectedItem, setSelectedItem] = useState<StripePriceWithProduct | null>(null);
