@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-
+import Image from 'next/image';
 import TeamDialog from './TeamDialog';
 
 export interface TeamMember {
@@ -29,7 +29,7 @@ export default function TeamCard({ member }: { member: TeamMember }) {
 				style={{ width: '255px' }} // Limit card width to the image
 			>
 				<div className="relative">
-					<img
+					<Image
 						src={member.image}
 						alt={member.name}
 						className="w-[255px] h-[255px] object-cover rounded-md border-4 border-transparent hover:border-yellow-400 transition duration-500"

@@ -1,5 +1,6 @@
 import React from "react";
 import { TeamMember } from "./TeamCard"; 
+import Image from "next/image";
 
 interface DialogCardProps {
     member: TeamMember;
@@ -17,7 +18,7 @@ const DialogCard = ({ member, closeDialog }: DialogCardProps) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="md:w-[250px] lg:w-[350px] shrink-0 md:h-[350px] lg:h-[350px] overflow-hidden my-auto"> {/* Image container */}
-            <img
+            <Image
               src={member.image}
               alt={member.name}
               className="w-full h-full object-cover rounded-t-lg" // Rounded top on mobile
@@ -45,7 +46,7 @@ const DialogCard = ({ member, closeDialog }: DialogCardProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
+                    <Image
                       src={`/socials/${social.platform}_logo.jpg`}
                       alt={`${social.platform} logo`}
                       className="w-6 h-6 md:w-8 md:h-8 object-contain hover:opacity-75 transition duration-200"
