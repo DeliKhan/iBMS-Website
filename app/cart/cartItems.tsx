@@ -6,6 +6,17 @@ import { Plus } from "lucide-react";
 import { Minus } from "lucide-react";
 import { Trash2 } from "lucide-react";
 import { Button } from "../_components/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../_components/alert-dialog"
 
 interface StripePriceWithProduct {
   id: string;
@@ -116,13 +127,29 @@ export default function CartItems() {
                       <h1 className="font-bold text-xl">{item.name}</h1>
                       <p>{item.description}</p>
                     </div>
-                    <div className="flex flex-row gap-y-8">
-                      <Button variant="outline" size="icon" onClick={() => deleteItem(item.priceId)}>
-                        <Trash2/>
-                      </Button>
+                    <div className="flex flex-row gap-y-8 gap-x-6">
+                      <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="outline" size="icon" className="border-mac-dark-red">
+                          <Trash2 className="text-mac-dark-red"/>
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Your about to remove an item from cart.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction className="bg-mac-dark-red" onClick={() => deleteItem(item.priceId)}>Continue</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                       <div className="flex flex-row">
                         <button className='bg-slate-100 rounded-l-lg' disabled={(item?.priceId && cart[item.priceId] == 0) ? true : false} onClick={() => item && removeItem(item.priceId)}><Minus/></button>
-                        <div className='px-2 border-solid border-2 border-slate-100'>{item?.priceId ? cart[item.priceId] ?? 0 : 0}</div>
+                        <div className='px-2 pt-1 border-solid border-2 border-slate-100'>{item?.priceId ? cart[item.priceId] ?? 0 : 0}</div>
                         <button className='bg-slate-100 rounded-r-lg' onClick={() => item && addItem(item.priceId)}><Plus/></button>
                       </div>
                     </div>

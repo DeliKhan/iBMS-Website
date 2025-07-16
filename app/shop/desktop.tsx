@@ -21,6 +21,7 @@ import {
 } from "../_components/dialog"
 import { Lens } from "../_components/lens"
 import { useCart } from './cartContext';
+import { Button } from "@/app/_components/stateful-button";
 
 interface StripePriceWithProduct {
   id: string;
@@ -86,14 +87,39 @@ interface DesktopProp {
 
 const Desktop: React.FC<DesktopProp> = ({items}) => {
     const [selectedItem, setSelectedItem] = useState<StripePriceWithProduct | null>(null);
+    const [amount, setAmount] = useState<number>(1);
     const [hovering, setHovering] = useState(false);
-    const {cart, productList, addItem, removeItem} = useCart();
+    const [open, setOpen] = useState(false);
+    const {cart, productList, addItem} = useCart();
+
+    const handleOpenChange = (isOpen : boolean) => {
+        setOpen(isOpen);
+        if (!isOpen){
+            setAmount(1);
+        }
+    };
+    const handleClick = () => {
+        return new Promise((resolve) => {
+        setTimeout(resolve, 4000);
+        });
+    };
+
+    const handleAddToCart = () : Promise<void> => {
+        return new Promise<void>((resolve) => {
+            if (selectedItem?.id) {
+            addItem(selectedItem.id, amount);
+            }
+            resolve(); // resolve immediately after the action
+        });
+    };
+
+
     console.log("Items:", items);
     return (
         <div className="grid grid-cols-1 gap-4 bg-black px-5 pt-8 pb-10 md:grid-cols-2 lg:grid-cols-4" style={{
             backgroundImage: "url('/elipses.png')", 
           }}>
-            <Dialog>
+            <Dialog open={open} onOpenChange={handleOpenChange}>
                 {productList.map((item, index) => (
                     <DialogTrigger asChild key={index}>
                     <Card key={index} className="border bg-white cursor-pointer hover:scale-110 hover:border-yellow-400 hover:border-4" onClick={() => setSelectedItem(item)}>
@@ -137,10 +163,11 @@ const Desktop: React.FC<DesktopProp> = ({items}) => {
                     </DialogFooter>
                     <CardDescription className='text-base'>Quantity</CardDescription>
                     <div className='flex flex-row'>
-                        <button className='bg-slate-100 rounded-l-lg' disabled={(selectedItem?.id && cart[selectedItem.id] == 0) ? true : false} onClick={() => selectedItem && removeItem(selectedItem.id)}><Minus/></button>
-                        <div className='px-2 border-solid border-2 border-slate-100'>{selectedItem?.id ? cart[selectedItem.id] ?? 0 : 0}</div>
-                        <button className='bg-slate-100 rounded-r-lg' onClick={() => selectedItem && addItem(selectedItem.id)}><Plus/></button>
+                        <button className='bg-slate-100 rounded-l-lg' disabled={(amount == 1) ? true : false} onClick={() => setAmount(amount-1)}><Minus/></button>
+                        <div className='px-2 border-solid border-2 border-slate-100'>{amount}</div>
+                        <button className='bg-slate-100 rounded-r-lg' onClick={() => setAmount(amount+1)}><Plus/></button>
                     </div>
+                    <Button className="bg-black hover:ring-slate-700" onClick={handleAddToCart}>Add to Cart</Button>
                 </DialogContent>
             </Dialog>
         </div>
