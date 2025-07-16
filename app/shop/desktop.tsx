@@ -107,9 +107,7 @@ const Desktop: React.FC<DesktopProp> = ({items}) => {
             resolve(); // resolve immediately after the action
         });
     };
-
-
-    console.log("Items:", items);
+    
     return (
         <div className="grid grid-cols-1 gap-4 bg-black px-5 pt-8 pb-10 md:grid-cols-2 lg:grid-cols-4" style={{
             backgroundImage: "url('/elipses.png')", 
