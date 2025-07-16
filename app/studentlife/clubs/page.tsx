@@ -1,5 +1,6 @@
 import "../../globals.css";
 import Banner from '../../_components/banner';
+import Image from "next/image";
 
 export default function Page() {
   return (
@@ -108,7 +109,7 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {section.clubs.map((club, index) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-start">
-                  <img
+                  <Image
                     src={club.img}
                     alt={club.name}
                     className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full mb-4 md:mb-0 md:mr-4"
@@ -119,7 +120,7 @@ export default function Page() {
                     <div className="flex justify-center md:justify-start gap-4">
                       {club.links.map((link, linkIndex) => (
                         <a key={linkIndex} href={link.href} target="_blank" rel="noopener noreferrer">
-                          <img src={link.img} alt="Social Link" className="w-6 h-6" />
+                          <Image src={link.img} alt="Social Link" className="w-6 h-6" />
                         </a> 
                       ))}
                     </div>

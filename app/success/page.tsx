@@ -6,10 +6,11 @@ import { OrderConfirmed } from './orderConfirmed';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 interface SuccessProps {
-  searchParams: {
+  searchParams: Promise<{
     session_id?: string;
-  };
+  }>;
 }
+
 
 export default async function Success({ searchParams }: SuccessProps) {
     const resolvedSearchParams = await searchParams;

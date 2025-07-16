@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Banner from '../../_components/banner';
+import Image from 'next/image';
 
 const Tech4GoodPage = () => {
   return (
@@ -48,7 +49,7 @@ const Tech4GoodPage = () => {
             <div className="flex justify-center gap-8 flex-wrap">
               {/* Team Member 1 */}
               <div className="text-center">
-                <img
+                <Image
                   src="/tech4good/haaniya_ahmed.jpg"
                   alt="Haaniya Ahmed"
                   className="w-60 h-60 full object-cover mx-auto"
@@ -59,7 +60,7 @@ const Tech4GoodPage = () => {
 
               {/* Team Member 2 */}
               <div className="text-center">
-                <img
+                <Image
                   src="/tech4good/ayushpatel.png"
                   alt="Ayush Patel"
                   className="w-60 h-60 full object-cover mx-auto"
@@ -70,7 +71,7 @@ const Tech4GoodPage = () => {
 
               {/* Team Member 3 */}
               <div className="text-center">
-                <img
+                <Image
                   src="/path-to-image/emily-johnson.jpg"
                   alt="Kaiden Jessani"
                   className="w-60 h-60 full object-cover mx-auto"
@@ -81,7 +82,7 @@ const Tech4GoodPage = () => {
 
               {/* Team Member 4 */}
               <div className="text-center">
-                <img
+                <Image
                   src="/tech4good/mahad_hassan.jpg"
                   alt="Mahad Hassan"
                   className="w-60 h-60 full object-cover mx-auto"

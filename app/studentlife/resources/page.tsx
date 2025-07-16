@@ -2,6 +2,7 @@ import "../../globals.css";
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import Banner from '../../_components/banner';
+import Image from "next/image";
 
 const resources = [
   {
@@ -45,7 +46,7 @@ const ResourcesPage: React.FC = () => {
           {resources.map((resource, index) => (
             <div key={index} className="border rounded-lg shadow-lg bg-white overflow-hidden">
               {/* Image at the top */}
-              <img src={resource.image} alt={resource.title} className="w-full h-40 object-cover" />
+              <Image src={resource.image} alt={resource.title} className="w-full h-40 object-cover" />
 
               {/* Text content */}
               <div className="p-4">

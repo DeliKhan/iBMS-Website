@@ -1,5 +1,6 @@
 import "../../globals.css";
 import Banner from '../../_components/banner';
+import Image from "next/image";
 
 const mentorshipPrograms = [
   {
@@ -35,7 +36,7 @@ const MentorshipPage: React.FC = () => {
           {mentorshipPrograms.map((program, index) => (
             <div key={index} className="border rounded-lg shadow-lg bg-white overflow-hidden">
               {/* Larger Image */}
-              <img src={program.image} alt={program.title} className="w-full h-96 object-cover" />
+              <Image src={program.image} alt={program.title} className="w-full h-96 object-cover" />
 
               {/* Content */}
               <div className="p-4">

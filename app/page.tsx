@@ -3,6 +3,7 @@ import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import Banner from "./_components/banner";
 import Table from "./table";
+import Image from "next/image";
 
 interface Events {
   created: Date;
@@ -120,13 +121,13 @@ export default async function HomePage() {
   <h2 className="text-white text-2xl font-bold mb-4">Reach Us!</h2>
   <div className="flex justify-center space-x-8">
     <a href="https://www.facebook.com/ibiomedsociety/" target="_blank" rel="noopener noreferrer">
-      <img src="socials/facebook.png" alt="Facebook" className="w-12 h-12" />
+      <Image src="socials/facebook.png" alt="Facebook" className="w-12 h-12" />
     </a>
     <a href="https://www.instagram.com/ibiomedsociety/" target="_blank" rel="noopener noreferrer">
-      <img src="socials/ig.png" alt="Instagram" className="w-12 h-12" />
+      <Image src="socials/ig.png" alt="Instagram" className="w-12 h-12" />
     </a>
     <a href="https://www.linkedin.com/company/ibiomed-society/" target="_blank" rel="noopener noreferrer">
-      <img src="socials/linkedin.png" alt="LinkedIn" className="w-12 h-12" />
+      <Image src="socials/linkedin.png" alt="LinkedIn" className="w-12 h-12" />
     </a>
   </div>
 </div>
