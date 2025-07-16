@@ -90,18 +90,13 @@ const Desktop: React.FC<DesktopProp> = ({items}) => {
     const [amount, setAmount] = useState<number>(1);
     const [hovering, setHovering] = useState(false);
     const [open, setOpen] = useState(false);
-    const {cart, productList, addItem} = useCart();
+    const {productList, addItem} = useCart();
 
     const handleOpenChange = (isOpen : boolean) => {
         setOpen(isOpen);
         if (!isOpen){
             setAmount(1);
         }
-    };
-    const handleClick = () => {
-        return new Promise((resolve) => {
-        setTimeout(resolve, 4000);
-        });
     };
 
     const handleAddToCart = () : Promise<void> => {

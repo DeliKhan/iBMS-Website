@@ -1,6 +1,6 @@
 'use client'
 import { motion } from "motion/react";
-import { HeroHighlight, Highlight } from "../_components/hero-highlight"
+import { Highlight } from "../_components/hero-highlight"
 import { CircleCheckBig } from "lucide-react";
 
 export function OrderConfirmed() {

@@ -18,63 +18,6 @@ import {
   AlertDialogTrigger,
 } from "../_components/alert-dialog"
 
-interface StripePriceWithProduct {
-  id: string;
-  object: 'price';
-  active: boolean;
-  billing_scheme: 'per_unit' | 'tiered';
-  created: number;
-  currency: string;
-  custom_unit_amount: null | unknown; // Adjust if you plan to support this
-  livemode: boolean;
-  lookup_key: string | null;
-  metadata: Record<string, string>;
-  nickname: string | null;
-  product: {
-    id: string;
-    object: 'product';
-    active: boolean;
-    attributes: string[];
-    created: number;
-    default_price: string;
-    description: string | null;
-    images: string[];
-    livemode: boolean;
-    marketing_features: unknown[]; // Adjust if needed
-    metadata: Record<string, string>;
-    name: string;
-    package_dimensions: null | {
-      height: number;
-      length: number;
-      weight: number;
-      width: number;
-    }; // only if you use this
-    shippable: boolean | null;
-    statement_descriptor: string | null;
-    tax_code: string | null;
-    type: 'good' | 'service';
-    unit_label: string | null;
-    updated: number;
-    url: string | null;
-  };
-  recurring: null | {
-    aggregate_usage: string | null;
-    interval: string;
-    interval_count: number;
-    usage_type: string;
-    trial_period_days: number | null;
-  };
-  tax_behavior: 'exclusive' | 'inclusive' | 'unspecified';
-  tiers_mode: null | 'graduated' | 'volume';
-  transform_quantity: null | {
-    divide_by: number;
-    round: 'up' | 'down';
-  };
-  type: 'one_time' | 'recurring';
-  unit_amount: number | null;
-  unit_amount_decimal: string | null;
-}
-
 export default function CartItems() {
     const {cart,productList,addItem,removeItem, deleteItem} = useCart();
     const combinedCartWithNulls = Object.entries(cart).map(([priceId,quantity]) => {
