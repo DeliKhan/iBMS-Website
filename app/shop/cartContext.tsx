@@ -89,7 +89,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
                 return prev;
             }
             if (current <= 1){
-                const {[priceId] : _, ...rest} = prev;
+                const {[priceId] : _ignored, ...rest} = prev;
                 return rest;
             }
             return {
@@ -104,7 +104,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
             if (current === undefined){
                 return prev;
             }
-            const {[priceId] : _, ...rest} = prev;
+            const {[priceId] : _ignored, ...rest} = prev;
             return rest;
         });
     }
