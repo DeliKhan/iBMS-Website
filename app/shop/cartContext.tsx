@@ -68,6 +68,7 @@ interface CartContextType {
   productList: StripePriceWithProduct[];
   addItem: (priceId: string, quantity?: number) => void;
   removeItem: (priceId: string) => void;
+  deleteItem: (priceId: string) => void;
   clearCart: () => void;
 }
 
@@ -97,6 +98,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
             };
         });
     }
+    const deleteItem = (priceId : string) => {
+        setCart( prev => {
+            const current = prev[priceId];
+            if (current === undefined){
+                return prev;
+            }
+            const {[priceId] : _, ...rest} = prev;
+            return rest;
+        });
+    }
     const clearCart = () => {
         setCart({});
     };
@@ -109,7 +120,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({children}
         .catch((error) => console.error('Error fetching JSON:', error));
     }, []);
     return (
-        <cartContext.Provider value= {{cart, productList, addItem, removeItem, clearCart}}>
+        <cartContext.Provider value= {{cart, productList, addItem, removeItem, deleteItem, clearCart}}>
             {children}
         </cartContext.Provider>
     )    

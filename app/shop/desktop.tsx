@@ -87,14 +87,14 @@ interface DesktopProp {
 const Desktop: React.FC<DesktopProp> = ({items}) => {
     const [selectedItem, setSelectedItem] = useState<StripePriceWithProduct | null>(null);
     const [hovering, setHovering] = useState(false);
-    const {cart, addItem, removeItem} = useCart();
+    const {cart, productList, addItem, removeItem} = useCart();
     console.log("Items:", items);
     return (
         <div className="grid grid-cols-1 gap-4 bg-black px-5 pt-8 pb-10 md:grid-cols-2 lg:grid-cols-4" style={{
             backgroundImage: "url('/elipses.png')", 
           }}>
             <Dialog>
-                {items.map((item, index) => (
+                {productList.map((item, index) => (
                     <DialogTrigger asChild key={index}>
                     <Card key={index} className="border bg-white cursor-pointer hover:scale-110 hover:border-yellow-400 hover:border-4" onClick={() => setSelectedItem(item)}>
                         <CardHeader className="p-0">
